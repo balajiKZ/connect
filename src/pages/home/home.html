@@ -1,0 +1,21 @@
+<ion-header tab-color>
+  <ion-navbar>
+    <ion-title>
+      Kenzen Devices
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding back-ground>
+  <ion-list *ngFor="let device of devices" (click)="deviceSelected(device)">
+    <button class="devices" ion-item>
+      <h2>{{ device.name}}</h2>
+    </button>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button class="scan" ion-button color="dark" (click)="scan()">{{buttonText}}</button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ device.name || 'Device' }}
+    </ion-title>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="selection" color="dark">
+      <ion-segment-button value="onOff">
+        ON/OFF
+      </ion-segment-button>
+      <ion-segment-button value="timer">
+        Timer
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="padding">
+  <div [ngSwitch]="selection">
+    <ion-list *ngSwitchCase="'onOff'">
+      <!--ion-item>
+        <ion-label>Cartridge AB</ion-label>
+        <ion-toggle [(ngModel)]="cartridgeAB" color="dark" (ionChange)="setState('cartridgeAB')"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Cartridge CD</ion-label>
+        <ion-toggle [(ngModel)]="cartridgeCD" color="dark" (ionChange)="setState('cartridgeCD')"></ion-toggle>
+      </ion-item-->
+      <ion-item-group>
+        <ion-item-divider color="light">Cartridges</ion-item-divider>
+        <ion-item>
+          <ion-label>{{cart1Name}}</ion-label>
+          <ion-toggle [(ngModel)]="cartridge1" color="dark" (ionChange)="setState('cart1')"></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{cart2Name}}</ion-label>
+          <ion-toggle [(ngModel)]="cartridge2" color="dark" (ionChange)="setState('cart2')"></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{cart3Name}}</ion-label>
+          <ion-toggle [(ngModel)]="cartridge3" color="dark" (ionChange)="setState('cart3')"></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{cart4Name}}</ion-label>
+          <ion-toggle [(ngModel)]="cartridge4" color="dark" (ionChange)="setState('cart4')"></ion-toggle>
+        </ion-item>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item-divider color="light">Air Source</ion-item-divider>
+        <ion-item>
+          <ion-label>Blower 1</ion-label>
+          <ion-toggle [(ngModel)]="blower1" color="dark" (ionChange)="setState('blower1')"></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label>Blower 2</ion-label>
+          <ion-toggle [(ngModel)]="blower2" color="dark" (ionChange)="setState('blower2')"></ion-toggle>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+    <ion-list *ngSwitchCase="'timer'">
+      <ion-item-group>
+        <ion-item-divider color="light" text-center>ON/OFF Timer</ion-item-divider>
+      </ion-item-group>
+      <ion-grid radio-group [(ngModel)]="timerSelect">
+        <ion-row align-items-center>
+          <ion-col col-4 vert-mid text-center>
+            <ion-label fnt-bold fnt-1-8>Element</ion-label>
+          </ion-col>
+          <ion-col col-3 vert-mid text-center>
+            <ion-label fnt-bold>ON Time</ion-label>
+          </ion-col>
+          <ion-col col-3 vert-mid text-center>
+            <ion-label fnt-bold>OFF Time</ion-label>
+          </ion-col>
+          <ion-col text-center col-2>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center *ngFor="let time of timer">
+          <ion-col col-4 vert-mid text-center>
+            <ion-label fnt-bold>{{time.label}}</ion-label>
+          </ion-col>
+          <ion-col col-3 vert-mid text-center>
+            <ion-multi-picker id="time.onTime" [(ngModel)]="time.onTime" item-content [multiPickerColumns]="simpleColumns" (ionChange)="changeTime(time, 'on')"></ion-multi-picker>
+          </ion-col>
+          <ion-col col-3 vert-mid text-center>
+            <ion-multi-picker id="time.offTime" [(ngModel)]="time.offTime" item-content [multiPickerColumns]="simpleColumns" (ionChange)="changeTime(time, 'off')"></ion-multi-picker>
+          </ion-col>
+          <ion-col text-center col-2>
+            <ion-toggle [(ngModel)]="time.status" color="dark" (ionChange)="setState(time.bodyLabel)"></ion-toggle>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!--ion-item-group>
+        <ion-item-divider color="light">Clock Timer</ion-item-divider>
+        <ion-item>
+          <ion-label color="dark" fixed>Start Time</ion-label>
+          <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="startClock"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label color="dark" fixed>Stop Time</ion-label>
+          <ion-datetime displayFormat="HH:mm:ss" [(ngModel)]="endClock"></ion-datetime>
+        </ion-item>
+        <ion-item text-center>
+          <button ion-button color="dark" (click)="feedTime()" default>Feed</button>
+        </ion-item>
+      </ion-item-group-->
+    </ion-list>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <p>{{ statusMessage }}</p>
+  </ion-toolbar>
+</ion-footer>
